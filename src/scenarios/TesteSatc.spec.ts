@@ -18,6 +18,18 @@ test.describe('Testes funcionais no site da Satc', () => {
   test('Validar o acesso ao portal do aluno', async () => {
     await satcPage.preencherCamposValidos();
     await satcPage.enviarFormulario();
-    await satcPage.validarEnvio();
+    await satcPage.validarEnvioSucesso();
+  });
+
+  test('Validar a obrigatoriedade do campo Matricula de Acesso ao Aluno', async () => {
+    await satcPage.preencherCampoVazio();
+    await satcPage.enviarFormulario();
+    await satcPage.validarUsuarioObrigatorio();
+  });
+
+  test('Validar a obrigatoriedade do campo Senha do Acesso ao Aluno', async () => {
+    await satcPage.preencherSenhaErrada();
+    await satcPage.enviarFormulario();
+    await satcPage.validarSenhaObrigatorio();
   });
 });
